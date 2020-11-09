@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>加载海量点</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <style type="text/css">
+    html,body{
+        margin:0;
+        width:100%;
+        height:100%;
+        background:#ffffff;
+    }
+    #map{
+        width:100%;
+        height:100%;
+    }
+    #panel {
+        position: absolute;
+        top:30px;
+        left:10px;
+        z-index: 999;
+        color: #fff;
+    }
+    #login{
+        position:absolute;
+        width:300px;
+        height:40px;
+        left:50%;
+        top:50%;
+        margin:-40px 0 0 -150px;
+    }
+    #login input[type=password]{
+        width:200px;
+        height:30px;
+        padding:3px;
+        line-height:30px;
+        border:1px solid #000;
+    }
+    #login input[type=submit]{
+        width:80px;
+        height:38px;
+        display:inline-block;
+        line-height:38px;
+    }
+  </style>
+  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=5BAe2AL4Gbd1sCwNfexkr4m0DRyTsUkG"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+        !function(mapInit) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=5BAe2AL4Gbd1sCwNfexkr4m0DRyTsUkG&callback=mapinit";
+            window['mapinit'] = function() {
+                mapInit();
+            };
+            document.head.appendChild(script);
+        }(function() {
+            // 这里使用BMap
+            var map = new BMap.Map("map", {});                        // 创建Map实例
+            map.centerAndZoom(new BMap.Point(104.0573, 30.6471), 15);     // 初始化地图,设置中心点坐标和地图级别
+            map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+            if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+                var points = [];  // 添加海量点数据
+                points.push(new BMap.Point(104.08566030283136,30.644135803827766));
+                points.push(new BMap.Point(104.0696129316141,30.61709868525775));
+                points.push(new BMap.Point(104.04658566001288,30.583670053445108));
+                points.push(new BMap.Point(103.97568770770069,30.674081901301452));
+                points.push(new BMap.Point(103.99757695513982,30.635741443458));
+                points.push(new BMap.Point(103.94427393468123,30.792503606531938));
+                points.push(new BMap.Point(104.01719490409175,30.67286281544223));
+                points.push(new BMap.Point(104.14892317881737,30.617469179673844));
+                points.push(new BMap.Point(104.12604255503237,30.651192850108643));
+                points.push(new BMap.Point(104.05477423809697,30.646375281870775));
+                points.push(new BMap.Point(104.07274536361454,30.691961956103487));
+                points.push(new BMap.Point(104.13648029526158,30.75333070230876));
+                points.push(new BMap.Point(104.30876074999995,30.576014314285704));
+                points.push(new BMap.Point(104.19639943832034,30.832092496063016));
+                points.push(new BMap.Point(104.05225616987966,30.669898292469806));
+                points.push(new BMap.Point(104.10378584800837,30.70715977067307));
+                points.push(new BMap.Point(103.82177923972601,30.69901644520549));
+                points.push(new BMap.Point(104.03386719003709,30.635428246309857));
+                points.push(new BMap.Point(103.99850692923225,30.72098978170925));
+                points.push(new BMap.Point(104.05734317388838,30.7667106106044));
+                points.push(new BMap.Point(104.1114581139251,30.676163844233486));
+                points.push(new BMap.Point(104.05563767722562,30.716204275861998));
+                points.push(new BMap.Point(104.16521845515332,30.684747169344007));
+                points.push(new BMap.Point(104.08523179379112,30.676876943462023));
+                points.push(new BMap.Point(104.10530561337777,30.61529517585191));
+                points.push(new BMap.Point(104.10037346463317,30.657014229152594));
+                points.push(new BMap.Point(104.03962328525208,30.692977428417368));
+                points.push(new BMap.Point(104.07404540755903,30.659761511822047));
+                points.push(new BMap.Point(104.06732841145406,30.534322063436186));
+                points.push(new BMap.Point(103.95633197352895,30.57222722882343));
+                points.push(new BMap.Point(104.08561404582792,30.644160911146713));
+                points.push(new BMap.Point(104.06925466639098,30.61702398484839));
+                points.push(new BMap.Point(104.04599683987342,30.58376680379762));
+                points.push(new BMap.Point(103.97462707541905,30.67424591005579));
+                points.push(new BMap.Point(103.99707196301605,30.63556513160427));
+                points.push(new BMap.Point(103.94247134006748,30.79656808922564));
+                points.push(new BMap.Point(104.01664557967837,30.673112184262813));
+                points.push(new BMap.Point(104.14860662018911,30.617191726261503));
+                points.push(new BMap.Point(104.1262120244955,30.65111858537467));
+                points.push(new BMap.Point(104.0550426736589,30.64610389621244));
+                points.push(new BMap.Point(104.07218733786272,30.69198549718856));
+                points.push(new BMap.Point(104.13648029526158,30.75333070230876));
+                points.push(new BMap.Point(104.30876074999995,30.576014314285704));
+                points.push(new BMap.Point(104.19639943832034,30.832092496063016));
+                points.push(new BMap.Point(104.05198285808298,30.669735796717585));
+                points.push(new BMap.Point(104.10370390282904,30.707091063228113));
+                points.push(new BMap.Point(103.82193406206893,30.697939248275862));
+                points.push(new BMap.Point(104.0330101373931,30.63650580569145));
+                points.push(new BMap.Point(103.99715792534036,30.72183978910075));
+                points.push(new BMap.Point(104.05736903367593,30.76673872773979));
+                points.push(new BMap.Point(104.11147186237343,30.67615764625134));
+                points.push(new BMap.Point(104.05494900271974,30.716116433954873));
+                points.push(new BMap.Point(104.16524894062644,30.684621374916585));
+                points.push(new BMap.Point(104.08532100745337,30.677292493374573));
+                points.push(new BMap.Point(104.10496703727189,30.615340429479037));
+                points.push(new BMap.Point(104.10030604649128,30.657035463567336));
+                points.push(new BMap.Point(104.03940775440812,30.692760025995163));
+                points.push(new BMap.Point(104.07403436746432,30.65993084688216));
+                points.push(new BMap.Point(104.06742637643963,30.53420835341016));
+                points.push(new BMap.Point(103.95612698341186,30.57217904146908));
+                points.push(new BMap.Point(104.08560042343106,30.64416124390247));
+                points.push(new BMap.Point(104.06901644565498,30.61698797030774));
+                points.push(new BMap.Point(104.04570556620432,30.58391987263573));
+                points.push(new BMap.Point(103.97379205369526,30.674424547921415));
+                points.push(new BMap.Point(103.99652452479106,30.63532369808546));
+                points.push(new BMap.Point(103.9391365591604,30.802019608778625));
+                points.push(new BMap.Point(104.01595803136915,30.67346424109352));
+                points.push(new BMap.Point(104.1485432561037,30.617076504496524));
+                points.push(new BMap.Point(104.12629813714888,30.651069449604062));
+                points.push(new BMap.Point(104.05529156850675,30.64585143515741));
+                points.push(new BMap.Point(104.07169692482395,30.692085052693376));
+                points.push(new BMap.Point(104.13648029526158,30.75333070230876));
+                points.push(new BMap.Point(104.30876074999995,30.576014314285704));
+                points.push(new BMap.Point(104.19639943832034,30.832092496063016));
+                points.push(new BMap.Point(104.05167095519771,30.66951994519723));
+                points.push(new BMap.Point(104.10369330382738,30.707104551414467));
+                points.push(new BMap.Point(103.82193406206893,30.697939248275862));
+                points.push(new BMap.Point(104.03228427480475,30.637400594708268));
+                points.push(new BMap.Point(103.99545593841135,30.723326313344092));
+                points.push(new BMap.Point(104.05740973017697,30.76672263947525));
+                points.push(new BMap.Point(104.11159008941036,30.6760521130034));
+                points.push(new BMap.Point(104.05411021425836,30.716236334103975));
+                points.push(new BMap.Point(104.16525528133269,30.684596033999977));
+                points.push(new BMap.Point(104.08558193885031,30.677774151650887));
+                points.push(new BMap.Point(104.1048948175643,30.615349590156985));
+                points.push(new BMap.Point(104.10029799531084,30.65703693613226));
+                points.push(new BMap.Point(104.03930195630083,30.692544849682527));
+                points.push(new BMap.Point(104.07401973287614,30.660065588267845));
+                points.push(new BMap.Point(104.06740001679958,30.534248931034544));
+                points.push(new BMap.Point(103.95599070696798,30.572080413341162));
+                points.push(new BMap.Point(104.08557963855705,30.6441842547847));
+                points.push(new BMap.Point(104.06873373870678,30.616804590749194));
+                points.push(new BMap.Point(104.04554512755102,30.583841382015468));
+                points.push(new BMap.Point(103.97323359193368,30.674714482799477));
+                points.push(new BMap.Point(103.99603821921897,30.63516898148151));
+                points.push(new BMap.Point(103.93683729400007,30.805215229999988));
+                points.push(new BMap.Point(104.01553102510668,30.67363137816642));
+                points.push(new BMap.Point(104.14852465823418,30.617017807889955));
+                points.push(new BMap.Point(104.12634800539551,30.65106053633097));
+                points.push(new BMap.Point(104.05556451256894,30.645577957894876));
+                points.push(new BMap.Point(104.07126645190938,30.69226983686168));
+                points.push(new BMap.Point(104.13648029526158,30.75333070230876));
+                points.push(new BMap.Point(104.30876074999995,30.576014314285704));
+                points.push(new BMap.Point(104.19639943832034,30.832092496063016));
+                points.push(new BMap.Point(104.051543006189,30.66937799053071));
+                points.push(new BMap.Point(104.10370871557225,30.707146541180556));
+                points.push(new BMap.Point(103.82305860416665,30.695789625));
+                points.push(new BMap.Point(104.03171918488673,30.637940715053684));
+                points.push(new BMap.Point(103.99443181072171,30.724087862144362));
+                points.push(new BMap.Point(104.05746712235577,30.766777734133857));
+                points.push(new BMap.Point(104.11162392248998,30.67603836284447));
+                points.push(new BMap.Point(104.0530407502865,30.716487249331735));
+                points.push(new BMap.Point(104.16527317678384,30.68459906671111));
+                points.push(new BMap.Point(104.08568957337182,30.678220143858034));
+                points.push(new BMap.Point(104.10486215133487,30.61535450784231));
+                points.push(new BMap.Point(104.10024735227567,30.65707519001115));
+                points.push(new BMap.Point(104.03924585156653,30.69224643173892));
+                points.push(new BMap.Point(104.07408700572032,30.66017618653117));
+                points.push(new BMap.Point(104.06735457407439,30.53430711816585));
+                points.push(new BMap.Point(103.9559749057837,30.57203712224198));
+
+                var options = {
+                    size: BMAP_POINT_SIZE_SMALL,
+                   // shape: BMAP_POINT_SHAPE_STAR,
+                    color: '#d340c3'
+                }
+                var pointCollection = new BMap.PointCollection(points, options);  // 初始化PointCollection
+                pointCollection.addEventListener('click', function (e) {
+                    alert('单击点的坐标为：' + e.point.lng + ',' + e.point.lat);  // 监听点击事件
+                });
+                map.addOverlay(pointCollection);  // 添加Overlay
+            } else {
+                alert('请在chrome、safari、IE8+以上浏览器查看本示例');
+            }
+        });
+
+
+
+
+
+  </script>
+</body>
+</html>

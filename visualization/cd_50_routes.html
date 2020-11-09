@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>加载海量点</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <style type="text/css">
+    html,body{
+        margin:0;
+        width:100%;
+        height:100%;
+        background:#ffffff;
+    }
+    #map{
+        width:100%;
+        height:100%;
+    }
+    #panel {
+        position: absolute;
+        top:30px;
+        left:10px;
+        z-index: 999;
+        color: #fff;
+    }
+    #login{
+        position:absolute;
+        width:300px;
+        height:40px;
+        left:50%;
+        top:50%;
+        margin:-40px 0 0 -150px;
+    }
+    #login input[type=password]{
+        width:200px;
+        height:30px;
+        padding:3px;
+        line-height:30px;
+        border:1px solid #000;
+    }
+    #login input[type=submit]{
+        width:80px;
+        height:38px;
+        display:inline-block;
+        line-height:38px;
+    }
+  </style>
+  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=5BAe2AL4Gbd1sCwNfexkr4m0DRyTsUkG"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+        !function(mapInit) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=5BAe2AL4Gbd1sCwNfexkr4m0DRyTsUkG&callback=mapinit";
+            window['mapinit'] = function() {
+                mapInit();
+            };
+            document.head.appendChild(script);
+        }(function() {
+            // 这里使用BMap
+            var map = new BMap.Map("map", {});                        // 创建Map实例
+            map.centerAndZoom(new BMap.Point(104.0573, 30.6471), 15);     // 初始化地图,设置中心点坐标和地图级别
+            map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+            if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+                var points = [];  // 添加海量点数据
+
+                points.push(new BMap.Point(104.112624,30.712982));
+points.push(new BMap.Point(104.067467,30.534620));
+points.push(new BMap.Point(104.089118,30.683761));
+points.push(new BMap.Point(104.052715,30.677855));
+points.push(new BMap.Point(104.013115,30.645506));
+points.push(new BMap.Point(104.153370,30.590825));
+points.push(new BMap.Point(104.015434,30.670063));
+points.push(new BMap.Point(104.039850,30.622588));
+points.push(new BMap.Point(104.060162,30.638826));
+points.push(new BMap.Point(104.053150,30.583362));
+points.push(new BMap.Point(104.068984,30.655410));
+points.push(new BMap.Point(103.956500,30.677045));
+points.push(new BMap.Point(104.045896,30.694281));
+points.push(new BMap.Point(104.066789,30.771126));
+points.push(new BMap.Point(104.081487,30.655057));
+points.push(new BMap.Point(104.108382,30.682009));
+points.push(new BMap.Point(104.071696,30.613747));
+points.push(new BMap.Point(104.109077,30.666352));
+points.push(new BMap.Point(103.976153,30.743759));
+points.push(new BMap.Point(104.042118,30.646051));
+points.push(new BMap.Point(104.095126,30.662661));
+points.push(new BMap.Point(103.991530,30.672606));
+points.push(new BMap.Point(104.172924,30.687440));
+points.push(new BMap.Point(104.066055,30.668568));
+points.push(new BMap.Point(104.197591,30.831428));
+points.push(new BMap.Point(103.940034,30.796193));
+points.push(new BMap.Point(103.987748,30.624755));
+points.push(new BMap.Point(104.315198,30.569920));
+points.push(new BMap.Point(104.072640,30.686202));
+points.push(new BMap.Point(104.119353,30.647521));
+points.push(new BMap.Point(104.098606,30.704355));
+points.push(new BMap.Point(104.071948,30.699036));
+points.push(new BMap.Point(104.132939,30.671644));
+points.push(new BMap.Point(104.035924,30.670203));
+points.push(new BMap.Point(104.038519,30.714295));
+points.push(new BMap.Point(103.801524,30.966089));
+points.push(new BMap.Point(104.002426,30.709992));
+points.push(new BMap.Point(104.064963,30.719808));
+points.push(new BMap.Point(104.137405,30.753494));
+points.push(new BMap.Point(104.052868,30.662826));
+points.push(new BMap.Point(104.080979,30.639072));
+points.push(new BMap.Point(104.078216,30.669452));
+points.push(new BMap.Point(104.033446,30.754664));
+points.push(new BMap.Point(103.832534,30.680243));
+points.push(new BMap.Point(103.994773,30.564895));
+points.push(new BMap.Point(104.022811,30.690828));
+points.push(new BMap.Point(103.945647,30.572875));
+points.push(new BMap.Point(104.147157,30.630627));
+points.push(new BMap.Point(104.105825,30.614358));
+points.push(new BMap.Point(104.098145,30.642621));
+
+
+                var options = {
+                    size: BMAP_POINT_SIZE_BIG,
+                    shape: BMAP_POINT_SHAPE_STAR,
+                    color: 'rgb(0,0,0)'
+                }
+                var pointCollection = new BMap.PointCollection(points, options);  // 初始化PointCollection
+                pointCollection.addEventListener('click', function (e) {
+                    alert('单击点的坐标为：' + e.point.lng + ',' + e.point.lat);  // 监听点击事件
+                });
+                map.addOverlay(pointCollection);  // 添加Overlay
+				var sy = new BMap.Symbol(BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW, {
+				scale: 0.6,//图标缩放大小
+				strokeColor:'#fff',//设置矢量图标的线填充颜色
+				strokeWeight: '2',//设置线宽
+				});
+				var icons = new BMap.IconSequence(sy, '10', '30');
+				// 创建polyline对象
+				var pois = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.07264,30.68620237),
+new BMap.Point(104.0649627,30.71980847),
+new BMap.Point(104.0986059,30.70435529),
+new BMap.Point(104.1374052,30.75349353),
+new BMap.Point(104.1329387,30.67164384),
+new BMap.Point(104.1193525,30.64752084),
+new BMap.Point(104.1090771,30.66635166),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline =new BMap.Polyline(pois, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#2828FF" //折线颜色
+				});
+				// 创建polyline对象
+				var pois1 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.1058252,30.61435775),
+new BMap.Point(104.1729236,30.68743974),
+new BMap.Point(104.3151984,30.56991993),
+new BMap.Point(104.1471566,30.63062714),
+new BMap.Point(104.1533696,30.5908248),
+new BMap.Point(104.0674669,30.53461986),
+new BMap.Point(103.9877483,30.62475517),
+new BMap.Point(103.9456472,30.57287543),
+new BMap.Point(103.994773,30.56489546),
+new BMap.Point(104.0531496,30.58336183),
+new BMap.Point(104.0601616,30.63882647),
+new BMap.Point(104.071478,30.663951)
+				];
+				map.addOverlay(polyline);          //增加折线
+				
+				var polyline1 =new BMap.Polyline(pois1, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#005757" //折线颜色
+				});
+
+				map.addOverlay(polyline1);          //增加折线
+				// 创建polyline对象
+				var pois2 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.15241593290558,30.61348886420225),
+new BMap.Point(104.0719476,30.69903612),
+new BMap.Point(104.0334461,30.75466376),
+new BMap.Point(104.0385187,30.71429497),
+new BMap.Point(104.0667889,30.77112619),
+new BMap.Point(104.1975914,30.8314282),
+new BMap.Point(104.0891182,30.68376075),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline2 =new BMap.Polyline(pois2, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#FFDC35" //折线颜色
+				});
+
+				map.addOverlay(polyline2);          //增加折线
+				// 创建polyline对象
+				var pois3 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.0814874,30.65505682),
+new BMap.Point(104.0398504,30.6225877),
+new BMap.Point(104.0527146,30.6778554),
+new BMap.Point(104.0660554,30.66856751),
+new BMap.Point(104.0951262,30.66266093),
+new BMap.Point(104.0689837,30.65541021),
+new BMap.Point(104.0782159,30.66945182),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline3 =new BMap.Polyline(pois3, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#F75000" //折线颜色
+				});
+				map.addOverlay(polyline3);          //增加折线
+				
+				
+				// 创建polyline对象
+				var pois4 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.0024264,30.70999166),
+new BMap.Point(103.9761532,30.74375889),
+new BMap.Point(103.9400341,30.79619282),
+new BMap.Point(103.8015243,30.96608917),
+new BMap.Point(103.8325337,30.68024285),
+new BMap.Point(103.9564998,30.67704485),
+new BMap.Point(103.9915304,30.67260637),
+new BMap.Point(104.0228111,30.69082847),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline4 =new BMap.Polyline(pois4, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#008080" //折线颜色
+				});
+
+				map.addOverlay(polyline4);          //增加折线
+				
+
+				// 创建polyline对象
+				var pois5 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.0154339,30.6700633),
+new BMap.Point(104.0131154,30.64550562),
+new BMap.Point(104.0421176,30.64605112),
+new BMap.Point(104.0359237,30.67020265),
+new BMap.Point(104.0528679,30.66282643),
+new BMap.Point(104.0458955,30.69428081),
+new BMap.Point(104.0981447,30.6426209),
+new BMap.Point(104.108382,30.68200853),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline5 =new BMap.Polyline(pois5, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#BDB76B" //折线颜色
+				});
+
+				map.addOverlay(polyline5);          //增加折线
+				
+								// 创建polyline对象
+				var pois6 = [
+					new BMap.Point(104.071478,30.663951),
+new BMap.Point(104.1126237,30.71298163),
+new BMap.Point(104.0716961,30.61374721),
+new BMap.Point(104.0809785,30.63907226),
+new BMap.Point(104.071478,30.663951)
+				];
+				var polyline6 =new BMap.Polyline(pois6, {
+				enableEditing: false,//是否启用线编辑，默认为false
+				enableClicking: true,//是否响应点击事件，默认为true
+				icons:[icons],
+				strokeWeight:'3',//折线的宽度，以像素为单位
+				strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+				strokeColor:"#18a45b" //折线颜色
+				});
+
+				map.addOverlay(polyline6);          //增加折线
+				
+				
+            } else {
+                alert('请在chrome、safari、IE8+以上浏览器查看本示例');
+            }
+        });
+
+
+
+
+
+  </script>
+</body>
+</html>
