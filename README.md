@@ -8,3 +8,9 @@ road resources. Simultaneously, passengers could be served quickly with much low
 all, combining the benefits of bus service and car-hailing, this new APP provides economical
 service with real-time flexible route planning and order dispatch, which contributes to a better
 user experience.
+## Architecture Overview
+* Destination selection 
+* Order dispatch
+* Route planning
+* Pricing strategy for tickets
+* Theoretical Analysis
